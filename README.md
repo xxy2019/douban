@@ -1,5 +1,4 @@
-# douban_analysys_front
-<<<<<<< HEAD
+# douban_analyse
 
 > A Vue.js project
 
@@ -29,6 +28,3 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-=======
-豆瓣内容偏好分析前端项目
->>>>>>> 2451748934ffd055786d48611a61fabfb4a07dd5

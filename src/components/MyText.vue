@@ -2,7 +2,7 @@
   <div class="text">
     <ul>
       <li v-for="site in sites" :key="site.id" class="enum_list">
-        <img :src="site.pic" alt=""  id="m_pic">
+        <img :src="site.pic"  id="m_pic">
         <div class="detail">
           <li class="d_title">{{'电影名称：'+site.d_name}}</li>
           <p id="daoyian">
@@ -70,7 +70,6 @@ export default {
 .text{
   width:21.8rem;
   height:34.1875rem;
-  background-color: #f7f7f7;
   margin-top: 1.875rem;
   margin-left: 1.725rem;
   float:left;

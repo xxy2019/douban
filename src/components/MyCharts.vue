@@ -1,3 +1,20 @@
 <template>
-    <div>Chars</div>
+    <div>
+        <List>
+            <ListItem class='listitem' v-for="(item,index) in content" :key="item.index">
+                {{index+1+'、'+item.name+" by"+item.singer}}
+            </ListItem>
+        </List>
+    </div>
 </template>
+<script>
+    export default {
+        name:'Mycharts',
+        props:['content']
+    }
+</script>
+<style scoped>
+.listitem{
+    border: none;
+}
+</style>

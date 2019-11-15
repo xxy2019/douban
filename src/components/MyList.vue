@@ -1,8 +1,20 @@
 <template>
 <div class="mylist">
     <List item-layout="vertical">
-        <ListItem v-for="item in movies" :key="item.id" class="list">
-            <ListItemMeta :avatar="item.img_url" :title="item.name" :description="'表演者：'+item.singer"/>
+        <ListItem v-for="item in content.slice(0,40)" :key="item.id" class="list">
+            <ListItemMeta>
+                <template slot="avatar">
+                    <img :src="'https://images.weserv.nl/?url='+item.coverUrl" class="list_img"/>
+                </template>
+                <template slot="title">
+                    {{item.name}}
+                </template>
+                <template slot="description">
+                    <li>{{'表演者:'+item.singer}}</li>
+                    <li>{{"流派:"+item.style}}</li>
+                    <li>{{"发行时间:"+item.issueDate}}</li>
+                </template>
+        </ListItemMeta>
         </ListItem>
     </List>
 </div>
@@ -12,42 +24,19 @@
         name: 'MyList',
         data(){
             return{
-                movies:[
-                    {
-                        id:0,
-                        img_url:require('@/assets/logo.png'),
-                        name:'这一天',
-                        singer:'李汶翰',
-                        style:'原声',
-                        date:'2019-09-06'
-                    },
-                    {
-                        id:1,
-                        img_url:require('@/assets/logo.png'),
-                        name:'这一天',
-                        singer:'李汶翰',
-                        style:'原声',
-                        date:'2019-09-06'
-                    },
-                    {
-                        id:2,
-                        img_url:require('@/assets/logo.png'),
-                        name:'这一天',
-                        singer:'李汶翰',
-                        style:'原声',
-                        date:'2019-09-06'
-                    },
-                ]
             }
         },
+        props:['content']
     }
 </script>
 <style scoped>
-.mylist{
-    margin-left: 2em;
-}
 .list{
-    width: 30em;
+    width: 26rem;
     float: left;
+    border: none;
+    align-content: left;
+}
+.list_img{
+    width:7rem;margin-right:2rem
 }
 </style>

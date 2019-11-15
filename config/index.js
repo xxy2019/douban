@@ -14,7 +14,7 @@ module.exports = {
       '/api': {
         target: 'http://106.13.226.142:8091',  //目标接口域名
         changeOrigin: true,  //是否跨域
-        pathRewrite: {
+        pathRewrite: {   
           '^/api': '/api'   //重写接口
         }
       }

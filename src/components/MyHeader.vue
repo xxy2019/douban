@@ -22,7 +22,7 @@ export default {
 .logo{
   position: relative;
   top:2rem;
-  left:-34rem;
+  left: 2rem;
 }
 .title{
   width: 100%;
@@ -33,7 +33,7 @@ export default {
   color:#fff;
   font-size:1.8rem;
   position: relative;
-  left: 30rem;
+  left: 66rem;
   top: 2rem;
   font-family: 'Courier New', Courier, monospace;
 }

@@ -4,6 +4,7 @@ import Home from '../pages/Home.vue'
 import Music from '../pages/Music.vue'
 import Movie from '../pages/Movie.vue'
 import Book from '../pages/Book.vue'
+import Demo from '../components/Demo'
 
 Vue.use(Router)
 
@@ -28,6 +29,11 @@ export default new Router({
       path: '/Book',
       name: 'Book',
       component: Book
+    },
+    {
+      path: '/Demo',
+      name: 'Demo',
+      component: Demo
     }
   ]
 })

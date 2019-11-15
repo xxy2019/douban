@@ -20,21 +20,23 @@ export default {
   color:#fff;
 }
 .logo{
+  width:13.5625rem;
+  height: 2.375rem;
   position: relative;
   top:2rem;
-  left: 2rem;
+  left:2rem;
 }
 .title{
   width: 100%;
   height: 7rem;
+  text-align: right;
 }
 .title span{
-  width:18rem;
   color:#fff;
   font-size:1.8rem;
   position: relative;
-  left: 66rem;
   top: 2rem;
+  left: -2rem;
   font-family: 'Courier New', Courier, monospace;
 }
 </style>

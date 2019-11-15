@@ -8,7 +8,7 @@
                     <Col span="16">
                         <Row>
                             <Col span="3"><span>音乐热评榜</span></Col>
-                            <Col span="4" offset="17"><Button icon="ios-download-outline" type="text">导出榜单</Button></Col>
+                            <Col span="4" offset="17"><Button :loading=isloading icon="ios-download-outline" type="text" @click="OutputExcel">导出榜单</Button></Col>
                         </Row>
                         <hr><hr>
                         <MyList :content='musics'></MyList>
@@ -43,10 +43,34 @@ export default {
             ],
             musics:[
 
+            ],
+            isloading:false,
+            excel:[
+
             ]
         }
     },
     methods:{
+        OutputExcel(){
+            this.isloading=true;
+            this.$Modal.confirm({
+                content: '<p>您需要导出榜单吗？</p><p>请您仔细考虑！</p>',
+                onOk: () => {
+                    this.$Message.info('确定');
+                    this.getMusicExcel();
+                },
+                onCancel: () => {
+                    this.$Message.info('取消');
+                }
+            });
+            this.isloading=false;
+        },
+        getMusicExcel(){
+            Axios.get('/api/music/get/topNToExcel').then((excel)=>{
+                this.excel=excel.data;
+                console.log(excel);
+            })
+        },
         getMusicData(){
         return Axios({
           method:'get',

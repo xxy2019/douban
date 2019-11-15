@@ -37,6 +37,8 @@
     align-content: left;
 }
 .list_img{
-    width:7rem;margin-right:2rem
+    width:7rem;
+    height: 8rem;
+    margin-right:2rem
 }
 </style>

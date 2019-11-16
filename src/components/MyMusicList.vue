@@ -1,7 +1,7 @@
 <template>
 <div class="mylist">
     <List item-layout="vertical">
-        <ListItem v-for="item in content.slice(0,40)" :key="item.id" class="list">
+        <ListItem v-for="item in content" :key="item.id" class="list">
             <ListItemMeta>
                 <template slot="avatar">
                     <img :src="'https://images.weserv.nl/?url='+item.coverUrl" class="list_img"/>
@@ -12,7 +12,7 @@
                 <template slot="description">
                     <li>{{'表演者:'+item.singer}}</li>
                     <li>{{"流派:"+item.style}}</li>
-                    <li>{{"发行时间:"+item.issueDate}}</li>
+                    <li>{{"发行时间:"+item.issueDate.substring(0,10)}}</li>
                 </template>
         </ListItemMeta>
         </ListItem>

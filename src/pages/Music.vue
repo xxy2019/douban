@@ -8,15 +8,15 @@
                     <Col span="16">
                         <Row>
                             <Col span="3"><span>音乐热评榜</span></Col>
-                            <Col span="4" offset="17"><Button :loading=isloading icon="ios-download-outline" type="text" @click="OutputExcel">导出榜单</Button></Col>
+                            <Col span="4" offset="17"><Button icon="ios-download-outline" type="text" @click="OutputExcel">导出榜单</Button></Col>
                         </Row>
                         <hr><hr>
-                        <MyList :content='musics'></MyList>
+                        <MyMusicList :content='musics'></MyMusicList>
                     </Col>
                     <Col span="7" offset='1' style="margin-top:1.2rem">
                         <span class='title'>音乐排行榜</span>
                         <hr><hr>
-                        <MyCharts :content='tops'></MyCharts>
+                        <MyMusicCharts :content='musics'></MyMusicCharts>
                     </Col>
                 </Row>  
             </Content>
@@ -26,25 +26,21 @@
 </template>
 <script>
 import MyHeader from '../components/MyHeader'
-import MyList from '../components/MyList'
-import MyCharts from '../components/MyCharts'
+import MyMusicList from '../components/MyMusicList'
+import MyMusicCharts from '../components/MyMusicCharts'
 import Axios from 'axios'
 export default {
     name:'Music',
     components:{
-        MyList:MyList,
+        MyMusicList:MyMusicList,
         Header:MyHeader,
-        MyCharts:MyCharts
+        MyMusicCharts:MyMusicCharts
     },
     data(){
         return{
-            tops:[
-                
-            ],
             musics:[
 
             ],
-            isloading:false,
             excel:[
 
             ]
@@ -66,35 +62,30 @@ export default {
             this.isloading=false;
         },
         getMusicExcel(){
-            Axios.get('/api/music/get/topNToExcel').then((excel)=>{
-                this.excel=excel.data;
-                console.log(excel);
-            })
-        },
-        getMusicData(){
-        return Axios({
-          method:'get',
-          baseURL:'api',
-          url:'/music/get',
-        })
-        },
-        getMusicTopData(){
-        return Axios({
-          method:'get',
-          baseURL:'api',
-          url:'/music/get/topN',
-          timeout:1000
-        })
+            Axios({
+                    url:'/api/music/get/topNToExcel',
+                    method: 'get',
+                    responseType: 'blob'
+                }).then((response) => {
+                    const blob = new Blob(
+                        [response.data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8' })
+                    const aEle = document.createElement('a');     // 创建a标签
+                    const href = window.URL.createObjectURL(blob);       // 创建下载的链接
+                    aEle.href = href;
+                    aEle.download = "音乐榜单.xls";  // 下载后文件名
+                    document.body.appendChild(aEle);
+                    aEle.click();     // 点击下载
+                    document.body.removeChild(aEle); // 下载完成移除元素
+                    window.URL.revokeObjectURL(href) // 释放掉blob对象
+                }).catch((error) => {
+                    console.log(error);
+                });
         },
         getData(){
-        Axios.all([this.getMusicData(),this.getMusicTopData()])
-        .then(Axios.spread((music,musictop)=>{
-          this.tops=musictop.data;
-          this.musics=music.data;           
-          console.log(music.data);
-        })).catch(function(error){
-            console.log(error)
-        });
+            Axios.get('api/music/get/top').then((music)=>{
+                 this.musics=music.data;
+                 console.log(music.data)
+            })
         }
     },
     created(){

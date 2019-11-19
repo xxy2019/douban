@@ -6,15 +6,15 @@
             <Content class="content">
                 <Row>
                     <Col span="16">
-                        <Row>
-                            <Col span="3"><span>音乐热评榜</span></Col>
-                            <Col span="4" offset="17"><Button icon="ios-download-outline" type="text" @click="OutputExcel">导出榜单</Button></Col>
-                        </Row>
+                        <span style="line-height:3rem">音乐热评榜</span>
                         <hr><hr>
                         <MyMusicList :content='musics'></MyMusicList>
                     </Col>
                     <Col span="7" offset='1' style="margin-top:1.2rem">
-                        <span class='title'>音乐排行榜</span>
+                        <Row>
+                            <Col span="6" ><span class='title' style="line-height:2rem">音乐排行榜</span></Col>
+                            <Col span="6" offset="12"><Button  size='small' icon="ios-download-outline" type="text" @click="OutputExcel">导出榜单</Button></Col>
+                        </Row>
                         <hr><hr>
                         <MyMusicCharts :content='musics'></MyMusicCharts>
                     </Col>

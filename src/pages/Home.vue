@@ -1,29 +1,38 @@
 <template>
 <div class="layout">
     <Layout>
-        <Header>Header</Header>
+        <Header></Header>
         <Layout>
             <Content class="content">
-                <Row class="l_content">
-                    <Col span="7" offset="1" class="list_color">
-                        <h4 class="m_t">电影</h4>
-                        <span class="more"><router-link :to="{path:'/Movie'}" style="color:#000;text-decoration: none;">更多</router-link></span>
-                        <div class="clear"></div>
-                        <MyText></MyText>
+                <Row>
+                    <Col span="16">
+                        <Row>
+                            <Col span="3"><span style="line-height:2rem">亚洲热评视频</span></Col>
+                            <Col span="2" offset="19">
+                                <Button size='small' type="text":to='{path:"/Movie"}'>更多</Button>
+                            </Col>
+                        </Row>
+                        <hr/>
+                        <MyMovieList :content='movies' :num='more'></MyMovieList>
                     </Col>
-                    <Col span="7" offset="1" class="list_color">
-                        <h4 class="m_t">音乐</h4>
-                        <span class="more"><router-link :to="{path:'/Music'}" style="color:#000;text-decoration: none;">更多</router-link></span>
-                        <div class="clear"></div>
-                        <MyText></MyText>
+                    <Col span="7" offset='1' style="margin-top:1.2rem">
+                        <Row>
+                            <Col span="6" ><span class='title' style="line-height:2rem">音乐排行榜</span></Col>
+                            <Col span="6" offset="12"><Button size='small' type="text" :to='{path:"/Music"}'>更多</Button></Col>
+                        </Row>
+                        <hr/>
+                        <MyMusicCharts :content='musics'></MyMusicCharts>
                     </Col>
-                    <Col span="7" offset="1" class="list_color">
-                        <h4 class="m_t">书籍</h4>
-                        <span class="more"><router-link :to="{path:'/Book'}" style="color:#000;text-decoration: none;">更多</router-link></span>
-                        <div class="clear"></div>
-                        <MyText></MyText>
+                </Row>
+                 <Row style="margin-top:2rem">
+                    <Col span="3"><span>亚洲热评书籍</span></Col>
+                    <Col span="2" offset="12">
+                      <Button size='small' type="text" :to='{path:"/Book"}'>更多</Button>
                     </Col>
-                </row>
+                 </Row>
+                 <Row>
+                    <Col span="16"><hr/><MyBookList :content='books'></MyBookList></Col>
+                 </Row>  
             </Content>
         </Layout>
     </Layout>
@@ -31,88 +40,89 @@
 </template>
 <script>
 import MyHeader from '../components/MyHeader'
-import MyText from '../components/MyText'
+import MyMovieList from '../components/MyMovieList'
+import MyMusicCharts from '../components/MyMusicCharts'
+import MyBookList from '../components/MyBookList'
 import Axios from 'axios'
 export default {
     name:'Home',
     components:{
+        MyMovieList:MyMovieList,
         Header:MyHeader,
-        MyText:MyText,
+        MyMusicCharts:MyMusicCharts,
+        MyBookList:MyBookList
     },
     data(){
         return{
+            movies:[
+
+            ],
+            musics:[
+
+            ],
+            books:[
+
+            ],
+            more:8,
         }
     },
     methods:{
-      getMovieData(){
-        return Axios({
-          method:'get',
-          baseURL:'api',
-          url:'/movie/get'
-        })
-      },
-      getMusicData(){
-        return Axios({
-          method:'get',
-          baseURL:'api',
-          url:'/music/get'
-        })
-      },
-      getBookData(){
-        return Axios({
-          method:'get',
-          baseURL:'api',
-          url:'/book/get'
-        })
-      },
-      getData(){
-        Axios.all([this.getMovieData(),this.getMusicData(),this.getBookData()])
-        .then(Axios.spread(function(movie,music,book){
-          console.log(movie);
-          console.log(music);
-          console.log(book)
-        }));
-      }
+        OutputMore(){
+            const msg = this.$Message.loading({
+                    content: 'Loading...',
+                    duration: 0,
+                });
+            setTimeout(msg, 3000);
+            setTimeout(()=>{
+                this.more=0
+            },3000)
+        },
+        getMovieData(){
+          return Axios({
+            method:'get',
+            baseURL:'api',
+            url:'/movie/get/top50'
+          })
+        },
+        getMusicData(){
+          return Axios({
+            method:'get',
+            baseURL:'api',
+            url:'/music/get/top10'
+          })
+        },
+        getBookData(){
+          return Axios({
+            method:'get',
+            baseURL:'api',
+            url:'/book/topTenBook'
+          })
+        },
+        getData(){
+            Axios.all([this.getMovieData(),this.getMusicData(),this.getBookData()])
+            .then(Axios.spread((movie,music,book)=>{
+              this.movies=movie.data;
+              this.musics=music.data;
+              this.books=book.data
+            }))
+        }
     },
     created(){
       this.getData();
     }
 }
 </script>
-<style lang="css" scoped>
+<style scoped>
 .content{
+    padding:2em 3rem 0 3rem;
     background-color: #fff;
-    padding-top: 2rem;
 }
-.list_color{
-  background-color: #f7f7f7;
+.content hr{
+    padding: 0;
+    margin:0;
 }
-.l_content{
-  width:75rem;
-  height:45.625rem;
-  margin-left: 1.875rem;
-}
-.m_t{
-  height:2.8125rem;
-  width:4.125rem;
-  line-height:2.8125rem;
-  margin: 0rem;
-  text-align: center;
-  float:left;
-}
-.more{
-  width:4.5625rem;
-  height:2.8125rem;
-  display: block;
-  line-height:2.8125rem;
-  text-align: center;
-  float:right;
-}
-.clear{
-  clear: both;
-  width:20rem;
-  height:.4375rem;
-  border-top:.0625rem solid #555;
-  margin-left: .6rem;
+.title{
+    position: relative;
+    top: -.3rem;
 }
 </style>

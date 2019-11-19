@@ -2,14 +2,14 @@
     <div>
         <List>
             <ListItem class='listitem' v-for="(item,index) in content" :key="item.index">
-                {{index+1+'、'+item.name+" by"+item.singer}}
+                {{index+1+'、'+item.name+" by"+item.author}}
             </ListItem>
         </List>
     </div>
 </template>
 <script>
     export default {
-        name:'Mycharts',
+        name:'MyBookCharts',
         props:['content']
     }
 </script>

@@ -10,7 +10,7 @@
 </template>
 <script>
 export default {
-    name:'MyHeader'
+  name: 'MyHeader'
 }
 </script>
 <style lang="css" scoped>

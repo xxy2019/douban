@@ -1,18 +1,17 @@
 <template>
 <div class="mylist">
     <List item-layout="vertical">
-        <ListItem v-for="item in content.slice(0,40)" :key="item.id" class="list">
+        <ListItem v-for="(item,index) in content.slice(num,10)" :key="index" class="list">
             <ListItemMeta>
                 <template slot="avatar">
-                    <img :src="'https://images.weserv.nl/?url='+item.coverUrl" class="list_img"/>
+                    <img :src="'https://images.weserv.nl/?url='+item.cover" class="list_img" @click="sendToparent(item.id)"/>
                 </template>
                 <template slot="title">
                     {{item.name}}
                 </template>
                 <template slot="description">
-                    <li>{{'表演者:'+item.singer}}</li>
-                    <li>{{"流派:"+item.style}}</li>
-                    <li>{{"发行时间:"+item.issueDate}}</li>
+                    <li>{{'书籍名称:'+item.name}}</li>
+                    <li>{{"作者:"+item.author}}</li>
                 </template>
         </ListItemMeta>
         </ListItem>
@@ -20,14 +19,20 @@
 </div>
 </template>
 <script>
-    export default {
-        name: 'MyList',
-        data(){
-            return{
-            }
-        },
-        props:['content']
+export default {
+  name: 'MyBookList',
+  data () {
+    return {
     }
+  },
+  methods: {
+    sendToparent: function (value) {
+      this.$emit('acceptfromchild', value)
+      console.log(value)
+    }
+  },
+  props: ['content', 'num']
+}
 </script>
 <style scoped>
 .list{

@@ -8,10 +8,10 @@
     </div>
 </template>
 <script>
-    export default {
-        name:'Mycharts',
-        props:['content']
-    }
+export default {
+  name: 'MyMusicCharts',
+  props: ['content']
+}
 </script>
 <style scoped>
 .listitem{

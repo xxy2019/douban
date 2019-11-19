@@ -1,10 +1,10 @@
 <template>
 <div class="mylist">
     <List item-layout="vertical">
-        <ListItem v-for="item in content" :key="item.id" class="list">
+        <ListItem v-for="(item,index) in content" :key="index" class="list">
             <ListItemMeta>
                 <template slot="avatar">
-                    <img :src="'https://images.weserv.nl/?url='+item.coverUrl" class="list_img"/>
+                    <img :src="'https://images.weserv.nl/?url='+item.coverUrl" class="list_img" @click="sendIdToparent(item.id)"/>
                 </template>
                 <template slot="title">
                     {{item.name}}
@@ -22,16 +22,20 @@
 </div>
 </template>
 <script>
-    export default {
-        name: 'MyMovieList',
-        data(){
-            return{
-            }
-        },
-        methods:{
-        },
-        props:['content','num']
+export default {
+  name: 'MyMovieList',
+  data () {
+    return {
     }
+  },
+  methods: {
+    sendIdToparent (value) {
+      console.log(value)
+      this.$emit('accepttochild', value)
+    }
+  },
+  props: ['content', 'num']
+}
 </script>
 <style scoped>
 .list{

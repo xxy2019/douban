@@ -4,7 +4,7 @@
         <ListItem v-for="item in content" :key="item.id" class="list">
             <ListItemMeta>
                 <template slot="avatar">
-                    <img :src="'https://images.weserv.nl/?url='+item.coverUrl" class="list_img"/>
+                    <img :src="'https://images.weserv.nl/?url='+item.coverUrl" class="list_img" @click="sendIdToparent(item.id)"/>
                 </template>
                 <template slot="title">
                     {{item.name}}
@@ -20,14 +20,20 @@
 </div>
 </template>
 <script>
-    export default {
-        name: 'MyList',
-        data(){
-            return{
-            }
-        },
-        props:['content']
+export default {
+  name: 'MyMusicList',
+  data () {
+    return {
     }
+  },
+  props: ['content'],
+  methods: {
+    sendIdToparent: function (value) {
+      console.log(value)
+      this.$emit('accepttochild', value)
+    }
+  }
+}
 </script>
 <style scoped>
 .list{

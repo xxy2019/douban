@@ -9,7 +9,7 @@
                         <Row>
                             <Col span="3"><span style="line-height:2rem">亚洲热评视频</span></Col>
                             <Col span="2" offset="19">
-                                <Button size='small' type="text":to='{path:"/Movie"}'>更多</Button>
+                                <Button size='small' type="text" :to='{path:"/Movie"}'>更多</Button>
                             </Col>
                         </Row>
                         <hr/>
@@ -72,7 +72,7 @@ export default {
                     content: 'Loading...',
                     duration: 0,
                 });
-            setTimeout(msg, 3000);
+            setTimeout(msg, 3000);a
             setTimeout(()=>{
                 this.more=0
             },3000)
@@ -105,11 +105,11 @@ export default {
               this.musics=music.data;
               this.books=book.data
             }))
-        }
-    },
-    created(){
-      this.getData();
-    }
+        },
+  },
+  created () {
+    this.getData()
+  }
 }
 </script>
 <style scoped>

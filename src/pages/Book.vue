@@ -58,7 +58,7 @@ export default {
             },3000)
         },
         getData(){
-            Axios.get('api/book/topTenBook').then((book)=>{
+            Axios.get('api/book/topBook').then((book)=>{
                  this.books=book.data;
                  console.log(book.data)
             })

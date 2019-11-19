@@ -81,7 +81,7 @@ export default {
       return Axios({
         method: 'get',
         baseURL: 'api',
-        url: '/movie/get/top50'
+        url: '/movie/topMovies/10'
       })
     },
     getMusicData () {
@@ -95,7 +95,7 @@ export default {
       return Axios({
         method: 'get',
         baseURL: 'api',
-        url: '/book/topTenBook'
+        url: '/book/topBook'
       })
     },
     getData () {

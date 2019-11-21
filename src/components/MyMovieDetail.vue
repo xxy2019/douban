@@ -6,29 +6,29 @@
             <h3 id="title">{{site.name}}</h3>
             <img :src="'https://images.weserv.nl/?url='+site.coverUrl"  id="m_pic">
             <div class="detail">
-              <p>{{'导演：'+site.director}}</p>
-              <p>
+              <p v-if='site.director'>{{'导演：'+site.director}}</p>
+              <p v-if='site.screenwriter'>
                 {{'编剧：'+site.screenwriter.substring(0,20)}}
               </p>
-              <p>
+              <p v-if='site.starring'>
                 {{'主演: '+site.starring.substring(0,20)}}
               </p>
-              <p>
+              <p v-if='site.type'>
               {{'类型: '+site.type}}
               </p>
-              <p>
+              <p v-if='site.countriesRegions'>
               {{'制片国家/地区:'+site.countriesRegions}}
               </p>
-              <p>
+              <p v-if='site.language'>
               {{'语言:'+site.language}}
               </p>
-              <p>
+              <p v-if='site.date'>
               {{'首播:'+site.date}}
               </p>
-              <p>
+              <p v-if='site.length'>
               {{'片长:'+site.length}}
               </p>
-              <p>
+              <p v-if='site.otherName'>
                 {{'又名：'+site.otherName.substring(0,20)}}
               </p>
               <p>
@@ -49,6 +49,7 @@
          <p class="intro_title">简介</p>
          <p class="intro_content">{{site.introduction}}</p>
         </Row>
+        
     </Row>
 </template>
 <script>

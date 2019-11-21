@@ -67,14 +67,14 @@ export default {
       }, 3000)
     },
     getData () {
-      Axios.get('api/book/topTenBook').then((book) => {
+      Axios.get('api/book/topBook').then((book) => {
         this.books = book.data
         console.log(book.data)
       })
     },
     showId (value) {
       console.log(value)
-      Axios.get('api/movie/get/' + value).then((bookDetail) => {
+      Axios.get('api/book/get/' + value).then((bookDetail) => {
         this.bookDetail = bookDetail.data
         this.show = false
         this.moreback = '返回'

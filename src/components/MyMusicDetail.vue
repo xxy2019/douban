@@ -1,35 +1,36 @@
 <template>
+<div>
     <Row>
       <Row>
         <Col span="12">
         <li class="enum_list">
-            <h3 id="title">{{site.name}}</h3>
+            <h2 id="title">{{site.name}}</h2>
             <img :src="'https://images.weserv.nl/?url='+site.coverUrl"  id="m_pic">
             <div class="detail">
-              <p>{{'表演者：'+site.singer}}</p>
-              <p>
-                {{'流派：'+site.style}}
+              <p v-if='site.singer'><span class="d_title">表演者：</span>{{' '+site.singer}}</p>
+              <p v-if='site.style'>
+                <span class="d_title">流派：</span>{{' '+site.style}}
               </p>
-              <p>
-                {{'专辑类型: '+site.albumType}}
+              <p v-if='site.albumType'>
+                <span class="d_title">专辑类型: </span>{{' '+site.albumType}}
               </p>
-              <p>
-              {{'介质: '+site.medium}}
+              <p v-if='site.medium'>
+              <span class="d_title">介质: </span>{{' '+site.medium}}
               </p>
-              <p>
-              {{'发行时间:'+site.issueDate.substring(0,10)}}
+              <p v-if='site.issueDate'>
+              <span class="d_title">发行时间:</span>{{' '+site.issueDate.substring(0,10)}}
               </p>
-              <p>
-              {{'出版者:'+site.publisher}}
+              <p v-if='site.publisher'>
+              <span class="d_title">出版者:</span>{{' '+site.publisher}}
               </p>
-              <p>
-              {{'唱片数:'+site.songNumbers}}
+              <p v-if='site.songNumbers'>
+              <span class="d_title">唱片数:</span>{{' '+site.songNumbers}}
               </p>
-              <p>
-              {{'条形码:'+site.barcode}}
+              <p v-if='site.barcode'>
+              <span class="d_title">条形码:</span>{{' '+site.barcode}}
               </p>
-              <p v-if="site.otherVersion==NULL">
-              {{'其他版本:'+site.otherVersion}}
+              <p v-if='site.otherVersion'>
+              <span class="d_title">其他版本:</span>{{' '+site.otherVersion}}
               </p>
             </div>
           </li>
@@ -46,17 +47,53 @@
          <p class="intro_title">简介</p>
          <p class="intro_content">{{site.introduction}}</p>
         </Row>
+        <Row class="b_introduction">
+         <p class="intro_title">曲目</p>
+         <p class="intro_content">{{site.track}}</p>
+         <ul>
+    <li v-for="item in trackArray" :key="item">{{item}}</li>
+  </ul>
+        </Row>
     </Row>
+    <div class="footer">
+    <div class="gotop" v-show="gotop" @click="toTop">Top</div>
+</div>
+</div>
 </template>
 <script>
 export default {
   name: 'MyMusicDetail',
   data () {
     return {
-      valueCustomText: 0
+      valueCustomText: 0,
+      gotop: true
     }
   },
-  props: ['site', 'star']
+  computed: {
+    trackArray: function () {
+      return this.site.track.split('.')
+    }
+  },
+  props: ['site', 'star'],
+  mounted () {
+    // 此处true需要加上，不加滚动事件可能绑定不成功
+    window.addEventListener('scroll', this.handleScroll, true)
+  },
+  methods: {
+    handleScroll () {
+      let scrolltop = document.documentElement.scrollTop || document.body.scrollTop
+      scrolltop > 30 ? (this.gotop = true) : (this.gotop = false)
+    },
+    toTop () {
+      let top = document.documentElement.scrollTop || document.body.scrollTop
+      const timeTop = setInterval(() => {
+        document.body.scrollTop = document.documentElement.scrollTop = top -= 50
+        if (top <= 0) {
+          clearInterval(timeTop)
+        }
+      }, 10)
+    }
+  }
 }
 </script>
 <style lang="css">
@@ -65,6 +102,10 @@ export default {
   height:37.5rem;
   margin-left: 1.725rem;
   float:left;
+}
+.d_title{
+  font-size: 0.75rem;
+  font-weight:bold;
 }
 ul,li{
   list-style: none;

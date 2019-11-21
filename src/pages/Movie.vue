@@ -67,7 +67,7 @@ export default {
       }, 3000)
     },
     getData () {
-      Axios.get('api/movie/get/top50').then((movie) => {
+      Axios.get('api/movie/topMovies/10').then((movie) => {
         this.movies = movie.data
         console.log(movie.data)
       })

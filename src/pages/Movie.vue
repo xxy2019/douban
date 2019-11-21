@@ -1,7 +1,7 @@
 <template>
 <div class="layout">
     <Layout>
-        <Header></Header>
+        <router-link :to="{path:'/'}"><Header></Header></router-link>
         <Layout>
             <Content class="content">
                 <Row>
@@ -67,7 +67,7 @@ export default {
       }, 3000)
     },
     getData () {
-      Axios.get('api/movie/topMovies').then((movie) => {
+      Axios.get('api/movie/topMovies/30').then((movie) => {
         this.movies = movie.data
         console.log(movie.data)
       })

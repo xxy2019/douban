@@ -1,14 +1,14 @@
 <template>
 <div class="layout">
     <Layout>
-        <Header></Header>
+        <Header :to='{path:"/"}'></Header>
         <Layout>
             <Content class="content">
                 <Row>
-                    <Col span="16">
+                    <Col :xs="12" :xl="16">
                         <Row>
-                            <Col span="3"><span style="line-height:2rem">亚洲热评视频</span></Col>
-                            <Col span="2" offset="19">
+                            <Col :xs="2" :xl="3"><span style="line-height:2rem">亚洲热评视频</span></Col>
+                            <Col :xs="{span:2,offset:19}" :xl="{span:2,offset:19}">
                                 <Button size='small' type="text" :to='{path:"/Movie"}'>更多</Button>
                             </Col>
                         </Row>
@@ -63,7 +63,7 @@ export default {
             books:[
 
             ],
-            more:8,
+            more:0,
         }
     },
     methods:{

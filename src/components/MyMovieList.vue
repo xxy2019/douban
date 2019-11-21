@@ -1,12 +1,12 @@
 <template>
 <div class="mylist">
     <List item-layout="vertical">
-        <ListItem v-for="(item,index) in content" :key="index" class="list">
+        <ListItem v-for="(item,index) in content.slice(num,30)" :key="index" class="list">
             <ListItemMeta>
                 <template slot="avatar">
                     <img :src="'https://images.weserv.nl/?url='+item.coverUrl" class="list_img" @click="sendIdToparent(item.id)"/>
                 </template>
-                <template slot="title">
+                <template slot="title" class="title">
                     {{item.name}}
                 </template>
                 <template slot="description">
@@ -45,8 +45,8 @@ export default {
     align-content: left;
 }
 .list_img{
-    width:7rem;
-    height: 8rem;
-    margin-right:2rem
+    width:8rem;
+    height: 11rem;
+    margin-right:1rem
 }
 </style>

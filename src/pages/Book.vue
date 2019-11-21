@@ -1,7 +1,7 @@
 <template>
 <div class="layout">
     <Layout>
-        <Header></Header>
+        <router-link :to="{path:'/'}"><Header></Header></router-link>
         <Layout>
             <Content class="content">
                 <Row>

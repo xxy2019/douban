@@ -1,23 +1,23 @@
 <template>
 <div class="layout">
     <Layout>
-        <Header></Header>
+        <router-link :to="{path:'/'}"><Header></Header></router-link>
         <Layout>
             <Content class="content">
                 <Row>
-                    <Col span="16">
+                    <Col :xl="16" :xs="16">
                     <Row>
-                      <Col span="6" ><span style="line-height:3rem">音乐热评榜</span></Col>
-                      <Col span="4" offset="14"><Button  size='large' icon="ios-arrow-back" type="text" v-show="!show" @click="change">返回</Button></Col>
+                      <Col :xl="{span:5,offset:0}" :xs="{span:11,offset:0}"><span>音乐热评榜</span></Col>
+                      <Col :xl="{span:3,offset:16}" :xs="{span:4,offset:1}"><Button  size='large' icon="ios-arrow-back" type="text" v-show="!show" @click="change">返回</Button></Col>
                     </Row>
                         <hr><hr>
                         <MyMusicList :content='musics' @accepttochild="showId" v-show='show'></MyMusicList>
                         <MyMusicDetail v-show='!show' :site='musicDetail' :star='musicDetail.reviewScore/2'></MyMusicDetail>
                     </Col>
-                    <Col span="7" offset='1' style="margin-top:1.2rem">
+                    <Col :xl="{span:7,offset:1}" :xs="{span:7,offset:1}" style="margin-top:1.2rem">
                         <Row>
-                            <Col span="6" ><span class='title' style="line-height:2rem">音乐排行榜</span></Col>
-                            <Col span="6" offset="12"><Button  size='small' icon="ios-download-outline" type="text" @click="OutputExcel">导出榜单</Button></Col>
+                            <Col :xl="6" :xs="6"><span class='title' style="line-height:2rem">音乐排行榜</span></Col>
+                            <Col :xl="{span:6,offset:12}" :xs="{span:6,offset:12}"><Button  size='small' icon="ios-download-outline" type="text" @click="OutputExcel">导出榜单</Button></Col>
                         </Row>
                         <hr><hr>
                         <MyMusicCharts :content='musics'></MyMusicCharts>

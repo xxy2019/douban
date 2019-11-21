@@ -7,8 +7,13 @@
                 <Row>
                     <Col :xl="16" :xs="16">
                     <Row>
+<<<<<<< HEAD
                       <Col :xl="{span:5,offset:0}" :xs="{span:11,offset:0}"><span>音乐热评榜</span></Col>
                       <Col :xl="{span:3,offset:16}" :xs="{span:4,offset:1}"><Button  size='large' icon="ios-arrow-back" type="text" v-show="!show" @click="change">返回</Button></Col>
+=======
+                      <Col span="6" ><span style="line-height:3rem">音乐热评榜</span></Col>
+                      <Col span="4" offset="14"><Button  size='large' icon="ios-arrow-back" type="text" v-show="!show" @click="change" id="back">返回</Button></Col>
+>>>>>>> b1f845f5b4d08370d9313ce70416343b85767d4f
                     </Row>
                         <hr><hr>
                         <MyMusicList :content='musics' @accepttochild="showId" v-show='show'></MyMusicList>
@@ -57,7 +62,26 @@ export default {
       show: true
     }
   },
+  mounted () {
+    // 此处true需要加上，不加滚动事件可能绑定不成功
+    window.addEventListener('scroll', this.handleScroll, true)
+  },
   methods: {
+    handleScroll () {
+      let scrolltop = document.documentElement.scrollTop || document.body.scrollTop
+      scrolltop > 30 ? (this.gotop = true) : (this.gotop = false)
+    },
+    change () {
+      this.show = true
+      let top = document.documentElement.scrollTop || document.body.scrollTop
+      // 实现滚动效果
+      const timeTop = setInterval(() => {
+        document.body.scrollTop = document.documentElement.scrollTop = top -= 50
+        if (top <= 0) {
+          clearInterval(timeTop)
+        }
+      }, 10)
+    },
     OutputExcel () {
       this.isloading = true
       this.$Modal.confirm({
@@ -72,6 +96,7 @@ export default {
       })
       this.isloading = false
     },
+<<<<<<< HEAD
     getData(){
         Axios.get('api/music/get/top').then((music)=>{
              this.musics=music.data;
@@ -81,6 +106,8 @@ export default {
     change () {
       this.show = true
     },
+=======
+>>>>>>> b1f845f5b4d08370d9313ce70416343b85767d4f
     getMusicExcel () {
       Axios.get('/api/music/get/topNToExcel').then((excel) => {
         this.excel = excel.data

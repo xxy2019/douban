@@ -67,7 +67,11 @@ export default {
       }, 3000)
     },
     getData () {
+<<<<<<< HEAD
       Axios.get('api/movie/topMovies/30').then((movie) => {
+=======
+      Axios.get('api/movie/topMovies/10').then((movie) => {
+>>>>>>> b1f845f5b4d08370d9313ce70416343b85767d4f
         this.movies = movie.data
         console.log(movie.data)
       })

@@ -1,55 +1,55 @@
 <template>
     <Row>
-      <Row>
-        <Col span="12">
-        <li class="enum_list">
-            <h3 id="title">{{site.name}}</h3>
-            <img :src="'https://images.weserv.nl/?url='+site.coverUrl"  id="m_pic">
-            <div class="detail">
-              <p v-if='site.director'>{{'导演：'+site.director}}</p>
-              <p v-if='site.screenwriter'>
-                {{'编剧：'+site.screenwriter.substring(0,20)}}
-              </p>
-              <p v-if='site.starring'>
-                {{'主演: '+site.starring.substring(0,20)}}
-              </p>
-              <p v-if='site.type'>
-              {{'类型: '+site.type}}
-              </p>
-              <p v-if='site.countriesRegions'>
-              {{'制片国家/地区:'+site.countriesRegions}}
-              </p>
-              <p v-if='site.language'>
-              {{'语言:'+site.language}}
-              </p>
-              <p v-if='site.date'>
-              {{'首播:'+site.date}}
-              </p>
-              <p v-if='site.length'>
-              {{'片长:'+site.length}}
-              </p>
-              <p v-if='site.otherName'>
-                {{'又名：'+site.otherName.substring(0,20)}}
-              </p>
-              <p>
-                {{'IMDb链接'+site.imDb}}
-              </p>
-            </div>
-          </li>
+      <Row class="title">
+        <Col span="16" class="enum_list">
+          <h3 id="title">{{site.name}}</h3>
+              <Col span="8" :xs="24" :lg="8">
+                <img :src="'https://images.weserv.nl/?url='+site.coverUrl"  id="m_pic">
+              </Col>
+              <Col span="13" class="detail" offset="3" :xs="24" :lg="13">
+                <p v-if='site.director'>{{'导演：'+site.director}}</p>
+                <p v-if='site.screenwriter'>
+                  {{'编剧：'+site.screenwriter.substring(0,20)}}
+                </p>
+                <p v-if='site.starring'>
+                  {{'主演: '+site.starring.substring(0,20)}}
+                </p>
+                <p v-if='site.type'>
+                {{'类型: '+site.type}}
+                </p>
+                <p v-if='site.countriesRegions'>
+                {{'制片国家/地区:'+site.countriesRegions}}
+                </p>
+                <p v-if='site.language'>
+                {{'语言:'+site.language}}
+                </p>
+                <p v-if='site.date'>
+                {{'首播:'+site.date}}
+                </p>
+                <p v-if='site.length'>
+                {{'片长:'+site.length}}
+                </p>
+                <p v-if='site.otherName'>
+                  {{'又名：'+site.otherName.substring(0,20)}}
+                </p>
+                <p>
+                  {{'IMDb链接: '+site.imDb}}
+                </p>
+              </Col>
         </Col>
-        <Col span="8" offset="4"  class="p_right">
-            <p>豆瓣评分</p>
-            <Rate show-text allow-half v-model="star" disabled>
-              <span style="color: #f5a623">{{star*2}}</span>
-            </Rate>
-            <p>{{site.scoreNumber+"评价"}}</p>
-        </Col>
+          <Col span="8"  class="p_right" :xs="24" :lg="8">
+              <p>豆瓣评分</p>
+              <Rate show-text allow-half v-model="star" disabled>
+                <span style="color: #f5a623">{{star*2}}</span>
+              </Rate>
+              <p>{{site.scoreNumber+"评价"}}</p>
+          </Col>
         </Row>
         <Row class="b_introduction">
          <p class="intro_title">简介</p>
          <p class="intro_content">{{site.introduction}}</p>
         </Row>
-        
+
     </Row>
 </template>
 <script>
@@ -63,31 +63,21 @@ export default {
 }
 </script>
 <style lang="css">
-.text{
-  width:21.8rem;
-  height:37.5rem;
-  margin-left: 1.725rem;
-  float:left;
+.title{
 }
 ul,li{
   list-style: none;
 }
 .enum_list{
-  width:21.875rem;
-  height:12.5rem;
   margin-top: 0.625rem;
-  margin-left: 0.625rem;
 }
 #m_pic{
-  width:8.4375rem;
-  height:12.65625rem;
+  width:100%;
+  height:100%;
   float:left;
   margin-top:.625rem;
 }
 .detail{
-  width:10rem;
-  height:10rem;
-  margin-left: .9375rem;
   float:right;
 }
 .detail p{

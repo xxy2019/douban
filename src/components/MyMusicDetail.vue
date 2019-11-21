@@ -1,41 +1,46 @@
 <template>
-<div>
     <Row>
       <Row>
-        <Col span="12">
-        <li class="enum_list">
-            <h2 id="title">{{site.name}}</h2>
-            <img :src="'https://images.weserv.nl/?url='+site.coverUrl"  id="m_pic">
-            <div class="detail">
-              <p v-if='site.singer'><span class="d_title">表演者：</span>{{' '+site.singer}}</p>
-              <p v-if='site.style'>
+        <Col span="12" :xs="24" :sm="12" :md="12" :lg="12">
+         <Row>
+           <li class="enum_list">
+             <h2 id="title">{{site.name}}</h2>
+              <Col span="12" :xs="24" :sm="12" :md="12" :lg="12">
+                  <img :src="'https://images.weserv.nl/?url='+site.coverUrl"  id="m_pic">
+              </Col>
+            <Col span="12" :xs="24" :sm="12" :md="12" :lg="12">
+            <Row class="detail">
+              <Row><p v-if='site.singer'><span class="d_title">表演者：</span>{{' '+site.singer}}</p></Row>
+              <Row><p v-if='site.style'>
                 <span class="d_title">流派：</span>{{' '+site.style}}
-              </p>
-              <p v-if='site.albumType'>
+              </p></Row>
+              <Row><p v-if='site.albumType'>
                 <span class="d_title">专辑类型: </span>{{' '+site.albumType}}
-              </p>
-              <p v-if='site.medium'>
+              </p></Row>
+              <Row><p v-if='site.medium'>
               <span class="d_title">介质: </span>{{' '+site.medium}}
-              </p>
-              <p v-if='site.issueDate'>
+              </p></Row>
+              <Row><p v-if='site.issueDate'>
               <span class="d_title">发行时间:</span>{{' '+site.issueDate.substring(0,10)}}
-              </p>
-              <p v-if='site.publisher'>
+              </p></Row>
+              <Row><p v-if='site.publisher'>
               <span class="d_title">出版者:</span>{{' '+site.publisher}}
-              </p>
-              <p v-if='site.songNumbers'>
+              </p></Row>
+              <Row><p v-if='site.songNumbers'>
               <span class="d_title">唱片数:</span>{{' '+site.songNumbers}}
-              </p>
-              <p v-if='site.barcode'>
+              </p></Row>
+              <Row><p v-if="site.barcode==Null">
               <span class="d_title">条形码:</span>{{' '+site.barcode}}
-              </p>
-              <p v-if='site.otherVersion'>
+              </p></Row>
+              <Row><p v-if="site.otherVersion==Null">
               <span class="d_title">其他版本:</span>{{' '+site.otherVersion}}
-              </p>
-            </div>
+              </p></Row>
+            </Row>
+            </Col>
           </li>
+          </Row>
         </Col>
-        <Col span="8" offset="4"  class="p_right">
+        <Col span="8" offset="4"  class="p_right" :xs="24" :sm="8" :md="8" :lg="8">
             <p>豆瓣评分</p>
             <Rate show-text allow-half v-model="star" disabled>
               <span style="color: #f5a623">{{star*2}}</span>
@@ -50,15 +55,8 @@
         <Row class="b_introduction">
          <p class="intro_title">曲目</p>
          <p class="intro_content">{{site.track}}</p>
-         <ul>
-    <li v-for="item in trackArray" :key="item">{{item}}</li>
-  </ul>
         </Row>
     </Row>
-    <div class="footer">
-    <div class="gotop" v-show="gotop" @click="toTop">Top</div>
-</div>
-</div>
 </template>
 <script>
 export default {
@@ -71,14 +69,10 @@ export default {
   },
   computed: {
     trackArray: function () {
-      return this.site.track.split('.')
+      return this.site.track.split('0')
     }
   },
   props: ['site', 'star'],
-  mounted () {
-    // 此处true需要加上，不加滚动事件可能绑定不成功
-    window.addEventListener('scroll', this.handleScroll, true)
-  },
   methods: {
     handleScroll () {
       let scrolltop = document.documentElement.scrollTop || document.body.scrollTop
@@ -111,7 +105,6 @@ ul,li{
   list-style: none;
 }
 .enum_list{
-  width:21.875rem;
   height:12.5rem;
   margin-top: 0.625rem;
   margin-left: 0.625rem;
@@ -138,13 +131,13 @@ ul,li{
   padding-left:.625rem
 }
 .b_introduction{
-  margin-top: 40px;
-  border-top: 1px solid #eee;
+  margin-top: 2.5rem;
+  border-top: .0625rem solid #eee;
 }
 .intro_title{
   font-weight: bold;
   font-size: 1.25rem;
-  margin: 2px;
+  margin: .125rem;
 }
 .intro_content{
   font-size:.875rem;

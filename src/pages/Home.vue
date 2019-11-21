@@ -13,7 +13,9 @@
                             </Col>
                         </Row>
                         <hr/>
+                        <Row>
                         <MyMovieList :content='movies' :num='more'></MyMovieList>
+                        </Row>
                     </Col>
                     <Col span="7" offset='1' style="margin-top:1.2rem">
                         <Row>
@@ -21,7 +23,9 @@
                             <Col span="6" offset="12"><Button size='small' type="text" :to='{path:"/Music"}'>更多</Button></Col>
                         </Row>
                         <hr/>
+                        <Row>
                         <MyMusicCharts :content='musics'></MyMusicCharts>
+                        </Row>
                     </Col>
                 </Row>
                  <Row style="margin-top:2rem">
@@ -113,6 +117,7 @@ export default {
 }
 </script>
 <style scoped>
+
 .content{
     padding:2em 3rem 0 3rem;
     background-color: #fff;

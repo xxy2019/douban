@@ -26,9 +26,20 @@ export default {
     }
   },
   methods: {
+    handleScroll () {
+      let scrolltop = document.documentElement.scrollTop || document.body.scrollTop
+      scrolltop > 30 ? (this.gotop = true) : (this.gotop = false)
+    },
     sendToparent: function (value) {
       this.$emit('acceptfromchild', value)
       console.log(value)
+      let top = document.documentElement.scrollTop || document.body.scrollTop
+      const timeTop = setInterval(() => {
+        document.body.scrollTop = document.documentElement.scrollTop = top -= 50
+        if (top <= 0) {
+          clearInterval(timeTop)
+        }
+      }, 10)
     }
   },
   props: ['content', 'num']

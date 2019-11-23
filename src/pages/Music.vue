@@ -7,13 +7,8 @@
                 <Row>
                     <Col :xl="16" :xs="16">
                     <Row>
-<<<<<<< HEAD
                       <Col :xl="{span:5,offset:0}" :xs="{span:11,offset:0}"><span>音乐热评榜</span></Col>
                       <Col :xl="{span:3,offset:16}" :xs="{span:4,offset:1}"><Button  size='large' icon="ios-arrow-back" type="text" v-show="!show" @click="change">返回</Button></Col>
-=======
-                      <Col span="6" ><span style="line-height:3rem">音乐热评榜</span></Col>
-                      <Col span="4" offset="14"><Button  size='large' icon="ios-arrow-back" type="text" v-show="!show" @click="change" id="back">返回</Button></Col>
->>>>>>> b1f845f5b4d08370d9313ce70416343b85767d4f
                     </Row>
                         <hr><hr>
                         <MyMusicList :content='musics' @accepttochild="showId" v-show='show'></MyMusicList>

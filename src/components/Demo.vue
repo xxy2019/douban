@@ -1,108 +1,35 @@
 <template>
-<div class="layout">
-    <Layout>
-        <router-link :to="{path:'/'}"><Header></Header></router-link>
-        <Layout>
-            <Content class="content">
-                <Row>
-                    <Col :xl="16" :xs="16" :md="16">
-                    <Row>
-                      <Col :xl="{span:5,offset:0}" :xs="{span:11,offset:0}" :md="{span:5,offset:0}"><span>音乐热评榜</span></Col>
-                      <Col :xl="{span:3,offset:16}" :xs="{span:4,offset:3}" :md="{span:3,offset:12}"><Button  size='large' icon="ios-arrow-back" type="text" v-show="!show" @click="change">返回</Button></Col>
-                    </Row>
-                        <hr><hr>
-                        <MyMusicList :content='musics' @accepttochild="showId" v-show='show'></MyMusicList>
-                        <MyMusicDetail v-show='!show' :site='musicDetail' :star='musicDetail.reviewScore/2'></MyMusicDetail>
-                    </Col>
-                    <Col :xl="{span:7,offset:1}" :xs="{span:7,offset:1}" :md="{span:7,offset:1}" style="margin-top:1.2rem">
-                        <Row>
-                            <Col :xl="6" :xs="12"><span class='title' style="line-height:2rem">音乐排行榜</span></Col>
-                            <Col :xl="{span:6,offset:12}" :xs="{span:11,offset:1}"><Button  size='small' icon="ios-download-outline" type="text" @click="OutputExcel">导出榜单</Button></Col>
-                        </Row>
-                        <hr><hr>
-                        <MyMusicCharts :content='musics'></MyMusicCharts>
-                    </Col>
-                </Row>
-            </Content>
-        </Layout>
-    </Layout>
-</div>
+    <div>
+      <Row>
+        <List>
+            <ListItem class='listitem' v-for="(item,index) in musics" :key="item.index">
+              <Col :xs="24" :sm="12" :md="12" :lg="12" style="font-size:0.23rem">
+                {{index+1+'、'+item.name+" by"+item.singer}}
+              </Col>
+            </ListItem>
+        </List>
+      </Row>
+    </div>
 </template>
 <script>
-import MyHeader from '../components/MyHeader'
-import MyMusicList from '../components/MyMusicList'
-import MyMusicCharts from '../components/MyMusicCharts'
-import MyMusicDetail from '../components/MyMusicDetail'
 import Axios from 'axios'
 export default {
-  name: 'Music',
-  components: {
-    MyMusicList: MyMusicList,
-    Header: MyHeader,
-    MyMusicCharts: MyMusicCharts,
-    MyMusicDetail
-  },
+  name: 'MyMusicCharts',
+  props: ['content'],
   data () {
     return {
-      musics: [
+      musics:[
 
-      ],
-      isloading: false,
-      excel: [
-
-      ],
-      musicDetail: [
-
-      ],
-      show: true
+      ]
     }
   },
   methods: {
-    OutputExcel () {
-      this.isloading = true
-      this.$Modal.confirm({
-        content: '<p>您需要导出榜单吗？</p><p>请您仔细考虑！</p>',
-        onOk: () => {
-          this.$Message.info('确定')
-          this.getMusicExcel()
-        },
-        onCancel: () => {
-          this.$Message.info('取消')
-        }
-      })
-      this.isloading = false
-    },
     getData(){
         Axios.get('api/music/get/top').then((music)=>{
              this.musics=music.data;
              console.log(music.data)
         })
     },
-    change () {
-      this.show = true
-    },
-    getMusicExcel () {
-      Axios.get('/api/music/get/topNToExcel').then((excel) => {
-        this.excel = excel.data
-        console.log(excel)
-      })
-    },
-    getMusicTopData () {
-      return Axios({
-        method: 'get',
-        baseURL: 'api',
-        url: '/music/get/top',
-        timeout: 1000
-      })
-    },
-    showId (value) {
-      console.log(value)
-      Axios.get('api/music/get/' + value).then((musicDetail) => {
-        this.musicDetail = musicDetail.data
-        this.show = false
-        console.log(this.musicDetail)
-      })
-    }
   },
   created () {
     this.getData()
@@ -110,17 +37,7 @@ export default {
 }
 </script>
 <style scoped>
-.content{
-    padding:2em 3rem 0 3rem;
-    background-color: #fff;
-}
-.content hr{
-    padding: 0;
-    margin:0;
-    border: solid 0.01em #dcdee2;
-}
-.title{
-    position: relative;
-    top: -.3rem;
+.listitem{
+    border: none;
 }
 </style>

@@ -5,10 +5,10 @@
         <Layout>
             <Content class="content">
                 <Row>
-                    <Col :xs="12" :xl="16">
+                    <Col :xl="16" :xs="13">
                         <Row>
-                            <Col :xs="2" :xl="3"><span style="line-height:2rem">亚洲热评视频</span></Col>
-                            <Col :xs="{span:2,offset:19}" :xl="{span:2,offset:19}">
+                            <Col :xl="{span:5,offset:0}" :xs="{span:11,offset:0}"><span>亚洲热评视频</span></Col>
+                            <Col :xl="{span:2,offset:17}" :xs="{span:3,offset:8}">
                                 <Button size='small' type="text" :to='{path:"/Movie"}'>更多</Button>
                             </Col>
                         </Row>
@@ -17,10 +17,10 @@
                         <MyMovieList :content='movies' :num='more'></MyMovieList>
                         </Row>
                     </Col>
-                    <Col span="7" offset='1' style="margin-top:1.2rem">
+                    <Col :xl="{span:7,offset:1}" :xs="{span:10,offset:1}">
                         <Row>
-                            <Col span="6" ><span class='title' style="line-height:2rem">音乐排行榜</span></Col>
-                            <Col span="6" offset="12"><Button size='small' type="text" :to='{path:"/Music"}'>更多</Button></Col>
+                            <Col :xl="6" :xs="12"><span class="title">音乐排行榜</span></Col>
+                            <Col :xl="{span:6,offset:12}" :xs="{span:11,offset:1}"><Button size='small' type="text" :to='{path:"/Music"}'>更多</Button></Col>
                         </Row>
                         <hr/>
                         <Row>
@@ -28,14 +28,14 @@
                         </Row>
                     </Col>
                 </Row>
-                 <Row style="margin-top:2rem">
-                    <Col span="3"><span>亚洲热评书籍</span></Col>
-                    <Col span="2" offset="12">
+                 <Row style="margin-top:1rem">
+                    <Col :xl="{span:5,offset:0}" :xs="{span:11,offset:0}"><span>亚洲热评书籍</span></Col>
+                     <Col :xl="{span:6,offset:15}" :xs="{span:7,offset:1}">
                       <Button size='small' type="text" :to='{path:"/Book"}'>更多</Button>
                     </Col>
                  </Row>
                  <Row>
-                    <Col span="16"><hr/><MyBookList :content='books'></MyBookList></Col>
+                    <Col :xl='16' :xs='15'><hr/><MyBookList :content='books'></MyBookList></Col>
                  </Row>  
             </Content>
         </Layout>
@@ -119,7 +119,7 @@ export default {
 <style scoped>
 
 .content{
-    padding:2em 3rem 0 3rem;
+    padding:1em 0.5rem 0 1rem;
     background-color: #fff;
 }
 .content hr{
@@ -127,7 +127,7 @@ export default {
     margin:0;
 }
 .title{
-    position: relative;
-    top: -.3rem;
+    font-size: .23rem;
+    line-height:.2rem
 }
 </style>

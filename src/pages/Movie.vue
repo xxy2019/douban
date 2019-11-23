@@ -5,21 +5,21 @@
         <Layout>
             <Content class="content">
                 <Row>
-                    <Col span="16">
+                    <Col :xl="16" :xs="13">
                         <Row>
-                            <Col span="3"><span>电影热评榜</span></Col>
-                            <Col span="2" offset="19">
+                            <Col :xl="{span:5,offset:0}" :xs="{span:11,offset:0}"><span>电影热评榜</span></Col>
+                            <Col :xl="{span:2,offset:17}" :xs="{span:3,offset:8}">
                                 <Button size='small' type="text" @click="OutputMore" v-show="show">更多</Button>
                                 <Button size='small' type="text" @click="back" v-show="!show">返回</Button>
                             </Col>
                         </Row>
-                        <hr><hr>
+                        <hr/>
                         <MyMovieList :content='movies' :num='more' @accepttochild="showId" v-show='show'></MyMovieList>
                         <MyMovieDetail v-show='!show' :site='movieDetail' :star='movieDetail.score/2'></MyMovieDetail>
                     </Col>
-                    <Col span="7" offset='1' style="margin-top:1.2rem">
+                    <Col :xl="{span:7,offset:1}" :xs="{span:10,offset:1}">
                         <span class='title'>电影排行榜</span>
-                        <hr><hr>
+                        <hr/>
                         <MyMovieCharts :content='movies'></MyMovieCharts>
                     </Col>
                 </Row>  
@@ -92,16 +92,15 @@ export default {
 </script>
 <style scoped>
 .content{
-    padding:2em 3rem 0 3rem;
+    padding:1em 0.5rem 0 1rem;
     background-color: #fff;
 }
 .content hr{
     padding: 0;
-    margin:0;
-    border: solid 0.01em #dcdee2;
+    margin-top:0.2rem;
 }
 .title{
-    position: relative;
-    top: -.3rem;
+  font-size: .23rem;
+  line-height:.2rem
 }
 </style>

@@ -7,11 +7,11 @@
                     <img :src="'https://images.weserv.nl/?url='+item.cover" class="list_img" @click="sendToparent(item.id)"/>
                 </template>
                 <template slot="title">
-                    {{item.name}}
+                    <li style="font-size:0.3rem" class="book_title">{{item.name}}</li>
                 </template>
                 <template slot="description">
-                    <li>{{'书籍名称:'+item.name}}</li>
-                    <li>{{"作者:"+item.author}}</li>
+                    <li class="book_description">{{'书籍名称:'+item.name}}</li>
+                    <li class="book_description">{{"作者:"+item.author}}</li>
                 </template>
         </ListItemMeta>
         </ListItem>
@@ -47,14 +47,21 @@ export default {
 </script>
 <style scoped>
 .list{
-    width: 26rem;
+    width: 7.3rem;
     float: left;
     border: none;
     align-content: left;
 }
 .list_img{
-    width:7rem;
-    height: 8rem;
-    margin-right:2rem
+    width:2.3rem;
+    height: 3rem;
+    margin-right:0.2rem
+}
+.book_title{
+  width: 4rem;
+}
+.book_description{
+  width: 8rem;
+  font-size: 0.25rem
 }
 </style>

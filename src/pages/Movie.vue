@@ -5,10 +5,10 @@
         <Layout>
             <Content class="content">
                 <Row>
-                    <Col span="16"  :xs="24" :lg="16">
+                    <Col span="16">
                         <Row>
-                            <Col span="3" :xs="12" :lg="3"><span>电影热评榜</span></Col>
-                            <Col span="2" offset="19" :xs="12" :lg="2">
+                            <Col span="3"><span>电影热评榜</span></Col>
+                            <Col span="2" offset="19">
                                 <Button size='small' type="text" @click="OutputMore" v-show="show">更多</Button>
                                 <Button size='small' type="text" @click="back" v-show="!show">返回</Button>
                             </Col>
@@ -17,7 +17,7 @@
                         <MyMovieList :content='movies' :num='more' @accepttochild="showId" v-show='show'></MyMovieList>
                         <MyMovieDetail v-show='!show' :site='movieDetail' :star='movieDetail.score/2'></MyMovieDetail>
                     </Col>
-                    <Col span="7" offset='1' style="margin-top:1.2rem" :xs="24" :lg="7">
+                    <Col span="7" offset='1' style="margin-top:1.2rem">
                         <span class='title'>电影排行榜</span>
                         <hr><hr>
                         <MyMovieCharts :content='movies'></MyMovieCharts>
@@ -67,11 +67,7 @@ export default {
       }, 3000)
     },
     getData () {
-<<<<<<< HEAD
       Axios.get('api/movie/topMovies/30').then((movie) => {
-=======
-      Axios.get('api/movie/topMovies/10').then((movie) => {
->>>>>>> b1f845f5b4d08370d9313ce70416343b85767d4f
         this.movies = movie.data
         console.log(movie.data)
       })

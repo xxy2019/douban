@@ -16,8 +16,8 @@
                     </Col>
                     <Col :xl="{span:7,offset:1}" :xs="{span:7,offset:1}" :md="{span:7,offset:1}" style="margin-top:1.2rem">
                         <Row>
-                            <Col :xl="6" :xs="6"><span class='title' style="line-height:2rem">音乐排行榜</span></Col>
-                            <Col :xl="{span:6,offset:12}" :xs="{span:6,offset:12}"><Button  size='small' icon="ios-download-outline" type="text" @click="OutputExcel">导出榜单</Button></Col>
+                            <Col :xl="6" :xs="12"><span class='title' style="line-height:2rem">音乐排行榜</span></Col>
+                            <Col :xl="{span:6,offset:12}" :xs="{span:11,offset:1}"><Button  size='small' icon="ios-download-outline" type="text" @click="OutputExcel">导出榜单</Button></Col>
                         </Row>
                         <hr><hr>
                         <MyMusicCharts :content='musics'></MyMusicCharts>

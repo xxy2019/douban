@@ -80,7 +80,6 @@ export default {
       })
       this.isloading = false
     },
-<<<<<<< HEAD
     getData(){
         Axios.get('api/music/get/top').then((music)=>{
              this.musics=music.data;
@@ -90,8 +89,6 @@ export default {
     change () {
       this.show = true
     },
-=======
->>>>>>> b1f845f5b4d08370d9313ce70416343b85767d4f
     getMusicExcel () {
       Axios.get('/api/music/get/topNToExcel').then((excel) => {
         this.excel = excel.data

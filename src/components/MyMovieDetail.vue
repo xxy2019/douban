@@ -1,43 +1,44 @@
 <template>
     <Row>
       <Row class="title">
-        <Col span="16" class="enum_list">
-          <h3 id="title">{{site.name}}</h3>
-              <Col span="8" :xs="24" :lg="8">
+        <Col :xl="16" :xs="24" class="enum_list">
+          <h3 class="title">{{site.name}}</h3>
+              <Col :xl="6" :xs="5">
                 <img :src="'https://images.weserv.nl/?url='+site.coverUrl"  id="m_pic">
               </Col>
-              <Col span="13" class="detail" offset="3" :xs="24" :lg="13">
-                <p v-if='site.director'>{{'导演：'+site.director}}</p>
+              <Col :xl="{span:15,offset:3}" :xs="{span:16,offset:2}" class="detail">
+                <p v-if='site.director'>
+                  <span class="d_title">导演：</span>{{''+site.director}}</p>
                 <p v-if='site.screenwriter'>
-                  {{'编剧：'+site.screenwriter.substring(0,20)}}
+                  <span class="d_title">编剧：</span>{{''+site.screenwriter.substring(0,20)}}
                 </p>
                 <p v-if='site.starring'>
-                  {{'主演: '+site.starring.substring(0,20)}}
+                  <span class="d_title">主演: </span>{{''+site.starring.substring(0,20)}}
                 </p>
                 <p v-if='site.type'>
-                {{'类型: '+site.type}}
+                <span class="d_title">类型: </span>{{''+site.type}}
                 </p>
                 <p v-if='site.countriesRegions'>
-                {{'制片国家/地区:'+site.countriesRegions}}
+                <span class="d_title">制片国家/地区: </span>{{''+site.countriesRegions}}
                 </p>
                 <p v-if='site.language'>
-                {{'语言:'+site.language}}
+                <span class="d_title">语言: </span>{{''+site.language}}
                 </p>
                 <p v-if='site.date'>
-                {{'首播:'+site.date}}
+                <span class="d_title">首播: </span>{{''+site.date}}
                 </p>
                 <p v-if='site.length'>
-                {{'片长:'+site.length}}
+                <span class="d_title">片长: </span>{{''+site.length}}
                 </p>
                 <p v-if='site.otherName'>
-                  {{'又名：'+site.otherName.substring(0,20)}}
+                  <span class="d_title">又名：</span>{{''+site.otherName.substring(0,20)}}
                 </p>
                 <p>
-                  {{'IMDb链接: '+site.imDb}}
+                 <span class="d_title">IMDb链接: </span> {{' '+site.imDb}}
                 </p>
               </Col>
         </Col>
-          <Col span="8"  class="p_right" :xs="24" :lg="8">
+          <Col :xl="{span:8}"  class="p_right" :xs="24">
               <p>豆瓣评分</p>
               <Rate show-text allow-half v-model="star" disabled>
                 <span style="color: #f5a623">{{star*2}}</span>
@@ -63,44 +64,45 @@ export default {
 }
 </script>
 <style lang="css">
+.text{
+  margin-left: 0.2rem;
+}
 .title{
+  font-size: 0.3rem;
+}
+.d_title{
+  font-size: 0.3rem;
+  font-weight:bold;
 }
 ul,li{
   list-style: none;
 }
-.enum_list{
-  margin-top: 0.625rem;
-}
 #m_pic{
-  width:100%;
-  height:100%;
+  width:2rem;
+  height:2.3rem;
   float:left;
-  margin-top:.625rem;
-}
-.detail{
-  float:right;
+  margin-top:.225rem;
 }
 .detail p{
-  font-size: 0.75rem;
-  margin: .125rem;
+  font-size: 0.3rem;
+  margin: .0325rem;
 }
 .p_right{
-  margin-top: 3.75rem;
-  border-left: .0625rem solid #eee;
-  padding-left:.625rem
+  margin:.75rem 0 0.2rem;
+  border-left: .0125rem solid #aaa;
+  padding-left:.625rem;
 }
 .b_introduction{
-  margin-top: 4.6875rem;
-  border-top: .0625rem solid #eee;
+  border-top: .0125rem solid #aaa;
 }
 .intro_title{
   font-weight: bold;
-  font-size: 1.25rem;
-  margin: .125rem;
+  font-size: 0.3rem;
+  margin: .1rem;
 }
 .intro_content{
-  font-size:.875rem;
-  text-indent:2rem;
-  line-height:1.875rem;
+  font-size:.3rem;
+  text-indent:.6rem;
+  line-height:.775rem;
 }
 </style>

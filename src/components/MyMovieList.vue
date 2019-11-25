@@ -10,11 +10,11 @@
                     <li style="font-size:0.3rem" class="movie_title">{{item.name}}</li>
                 </template>
                 <template slot="description">
-                    <li class="music_description">{{'导演:'+item.director}}</li>
-                    <li class="music_description">{{"编剧:"+item.screenwriter.substring(0,10)}}<span style="color:#555"> 更多</span></li>
-                    <li class="music_description">{{"主演:"+item.starring.substring(0,16)}}<span style="color:#555"> 更多</span></li>
-                    <li class="music_description">{{"类型："+item.type}}</li>
-                    <li class="music_description">{{"上映时间"+item.date}}</li>
+                    <li class="movie_description">{{'导演:'+item.director}}</li>
+                    <li class="movie_description">{{"编剧:"+item.screenwriter.substring(0,10)}}<span style="color:#555"> 更多</span></li>
+                    <li class="movie_description">{{"主演:"+item.starring.substring(0,16)}}<span style="color:#555"> 更多</span></li>
+                    <li class="movie_description">{{"类型："+item.type}}</li>
+                    <li class="movie_description">{{"上映时间"+item.date}}</li>
                 </template>
         </ListItemMeta>
         </ListItem>
@@ -60,10 +60,10 @@ export default {
     height: 3rem;
     margin-right:0.2rem
 }
-.music_title{
+.movie_title{
   width: 4rem;
 }
-.music_description{
+.movie_description{
   width: 8rem;
   font-size: 0.25rem
 }

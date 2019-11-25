@@ -47,7 +47,7 @@ export default {
 </script>
 <style scoped>
 .list{
-    width: 7.3rem;
+    width: 7.2rem;
     float: left;
     border: none;
     align-content: left;

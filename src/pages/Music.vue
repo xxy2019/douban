@@ -8,7 +8,7 @@
                     <Col :xl="16" :xs="13">
                     <Row>
                       <Col :xl="{span:5,offset:0}" :xs="{span:11,offset:0}"><span>音乐热评榜</span></Col>
-                      <Col :xl="{span:3,offset:16}" :xs="{span:4,offset:1}"><Button  size='large' icon="ios-arrow-back" type="text" v-show="!show" @click="change">返回</Button></Col>
+                      <Col :xl="{span:3,offset:16}" :xs="{span:7,offset:6}"><Button  size='small' icon="ios-arrow-back" type="text" v-show="!show" @click="change">返回</Button></Col>
                     </Row>
                         <hr/>
                         <MyMusicList :content='musics' @accepttochild="showId" v-show='show'></MyMusicList>

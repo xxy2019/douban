@@ -5,20 +5,20 @@
         <Layout>
             <Content class="content">
                 <Row>
-                    <Col :xl="16" :xs="13">
+                    <Col :xl="16" :xs="24">
                         <Row>
-                            <Col :xl="{span:5,offset:0}" :xs="{span:11,offset:0}"><span>电影热评榜</span></Col>
+                            <Col :xl="{span:5,offset:0}" :xs="{span:11,offset:0}"><span class='title'>电影热评榜</span></Col>
                             <Col :xl="{span:2,offset:17}" :xs="{span:3,offset:8}">
-                                <Button size='small' type="text" @click="OutputMore" v-show="show">更多</Button>
-                                <Button size='small' type="text" @click="back" v-show="!show">返回</Button>
+                                <Button size='large' type="text" @click="OutputMore" v-show="show">更多</Button>
+                                <Button size='large' type="text" @click="back" v-show="!show">返回</Button>
                             </Col>
                         </Row>
                         <hr/>
                         <MyMovieList :content='movies' :num='more' @accepttochild="showId" v-show='show'></MyMovieList>
                         <MyMovieDetail v-show='!show' :site='movieDetail' :star='movieDetail.score/2'></MyMovieDetail>
                     </Col>
-                    <Col :xl="{span:7,offset:1}" :xs="{span:10,offset:1}">
-                        <span class='title'>电影排行榜</span>
+                    <Col :xl="{span:7,offset:1}" :xs="{span:24}" style="margin-top:.33rem">
+                        <span>电影排行榜</span>
                         <hr/>
                         <MyMovieCharts :content='movies'></MyMovieCharts>
                     </Col>
@@ -92,15 +92,14 @@ export default {
 </script>
 <style scoped>
 .content{
-    padding:1em 0.5rem 0 1rem;
+    padding:1rem 0.5rem 0 1rem;
     background-color: #fff;
 }
 .content hr{
     padding: 0;
-    margin-top:0.2rem;
 }
 .title{
-  font-size: .23rem;
-  line-height:.2rem
+    font-size: 16px;
+    line-height:38px;
 }
 </style>

@@ -1,14 +1,14 @@
 <template>
     <Row>
       <Row>
-        <Col :xl="16" :xs="24">
+        <Col :xl="16" :xs="{span:24}">
          <Row>
             <li class="enum_list">
               <h2 class="title">{{site.name}}</h2>
-              <Col :xl="5" :xs="5">
+              <Col :xl="5" :xs="8">
                 <img :src="'https://images.weserv.nl/?url='+site.coverUrl"  id="m_pic">
               </Col>
-              <Col :xl="{span:13,offset:6}" :xs="{span:16,offset:2}">
+              <Col :xl="{span:14,offset:5}" :xs="{span:13,offset:3}">
                 <div class="detail">
                   <p v-if='site.singer'><span class="d_title">表演者：</span>{{' '+site.singer}}</p>
                   <p v-if='site.style'>
@@ -81,7 +81,7 @@ export default {
   }
 }
 </script>
-<style lang="css">
+<style lang="css" scoped>
 .text{
   margin-left: 0.2rem;
 }
@@ -101,8 +101,9 @@ ul,li{
   margin-left: 0.625rem;
 }
 #m_pic{
-  width:2rem;
-  height:2.3rem;
+  width:116px;
+  height: 134px;
+  margin-right:0.2rem;
   float:left;
   margin-top:.225rem;
 }
@@ -114,8 +115,7 @@ ul,li{
   margin: .0325rem;
 }
 .p_right{
-  margin:.75rem 0 0.2rem;
-  border-left: .0125rem solid #aaa;
+  margin:1.5rem 0 0.5rem;
   padding-left:.625rem;
 }
 .b_introduction{
@@ -129,6 +129,7 @@ ul,li{
 .intro_content{
   font-size:.3rem;
   text-indent:.6rem;
-  line-height:.775rem;
+  line-height:24px;
+  margin-bottom: 20px;
 }
 </style>

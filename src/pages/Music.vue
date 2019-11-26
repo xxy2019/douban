@@ -5,19 +5,19 @@
         <Layout>
             <Content class="content">
                 <Row>
-                    <Col :xl="16" :xs="13">
+                    <Col :xl="16" :xs="24">
                     <Row>
-                      <Col :xl="{span:5,offset:0}" :xs="{span:11,offset:0}"><span>音乐热评榜</span></Col>
-                      <Col :xl="{span:3,offset:16}" :xs="{span:7,offset:6}"><Button  size='small' icon="ios-arrow-back" type="text" v-show="!show" @click="change">返回</Button></Col>
+                      <Col :xl="{span:5,offset:0}" :xs="{span:11,offset:0}"><span class="title">音乐热评榜</span></Col>
+                      <Col :xl="{span:3,offset:16}" :xs="{span:7,offset:6}"><Button icon="ios-arrow-back" type="text" v-show="!show" @click="change">返回</Button></Col>
                     </Row>
                         <hr/>
                         <MyMusicList :content='musics' @accepttochild="showId" v-show='show'></MyMusicList>
                         <MyMusicDetail v-show='!show' :site='musicDetail' :star='musicDetail.reviewScore/2'></MyMusicDetail>
                     </Col>
-                    <Col :xl="{span:7,offset:1}" :xs="{span:10,offset:1}">
-                        <Row>
-                            <Col :xl="6" :xs="12"><span class="title">音乐排行榜</span></Col>
-                            <Col :xl="{span:6,offset:12}" :xs="{span:11,offset:1}"><Button class="title" size='small' icon="ios-download-outline" type="text" @click="OutputExcel">导出榜单</Button></Col>
+                    <Col :xl="{span:7,offset:1}" :xs="{span:24}">
+                        <Row  style="margin-top:.24rem">
+                            <Col :xl="6" :xs="12"><span>音乐排行榜</span></Col>
+                            <Col :xl="{span:8,offset:10}" :xs="{span:6,offset:5}"><Button size="small" icon="ios-download-outline" type="text" @click="OutputExcel">导出榜单</Button></Col>
                         </Row>
                         <hr/>
                         <MyMusicCharts :content='musics'></MyMusicCharts>
@@ -133,11 +133,10 @@ export default {
 }
 .content hr{
     padding: 0;
-    margin-top:0.2rem;
     color: #fff
 }
 .title{
-  font-size: .23rem;
-  line-height:.2rem
+    font-size: 16px;
+    line-height:38px;
 }
 </style>

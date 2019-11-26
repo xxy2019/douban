@@ -1,23 +1,27 @@
 <template>
 <div class="mylist">
     <List item-layout="vertical">
+      <Row> 
         <ListItem v-for="(item,index) in content.slice(num,30)" :key="index" class="list">
+            <Col :xl='12' :xs="24">
             <ListItemMeta>
                 <template slot="avatar">
                     <img :src="'https://images.weserv.nl/?url='+item.coverUrl" class="list_img" @click="sendIdToparent(item.id)"/>
                 </template>
                 <template slot="title">
-                    <li style="font-size:0.3rem" class="movie_title">{{item.name}}</li>
+                    <li>{{item.name}}</li>
                 </template>
                 <template slot="description">
-                    <li class="movie_description">{{'导演:'+item.director}}</li>
-                    <li class="movie_description">{{"编剧:"+item.screenwriter.substring(0,10)}}<span style="color:#555"> 更多</span></li>
-                    <li class="movie_description">{{"主演:"+item.starring.substring(0,16)}}<span style="color:#555"> 更多</span></li>
-                    <li class="movie_description">{{"类型："+item.type}}</li>
-                    <li class="movie_description">{{"上映时间"+item.date}}</li>
+                    <li>{{'导演:'+item.director}}</li>
+                    <li>{{"编剧:"+item.screenwriter.substring(0,10)}}<span style="color:#555"> 更多</span></li>
+                    <li>{{"主演:"+item.starring.substring(0,16)}}<span style="color:#555"> 更多</span></li>
+                    <li>{{"类型："+item.type}}</li>
+                    <li>{{"上映时间"+item.date}}</li>
                 </template>
-        </ListItemMeta>
+          </ListItemMeta>
+          </Col>  
         </ListItem>
+        </Row>
     </List>
 </div>
 </template>
@@ -50,21 +54,15 @@ export default {
 </script>
 <style scoped>
 .list{
-    width: 7.2rem;
-    float: left;
     border: none;
     align-content: left;
+    padding: 0px;
+    margin-top: 20px; 
 }
 .list_img{
-    width:2.3rem;
-    height: 3rem;
-    margin-right:0.2rem
-}
-.movie_title{
-  width: 4rem;
-}
-.movie_description{
-  width: 8rem;
-  font-size: 0.25rem
+    width:132px;
+    height: 172px;
+    margin-right:0.2rem;
+    margin-bottom: 10px;
 }
 </style>

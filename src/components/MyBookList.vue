@@ -1,20 +1,24 @@
 <template>
 <div class="mylist">
     <List item-layout="vertical">
+      <Row>
         <ListItem v-for="(item,index) in content.slice(num,10)" :key="index" class="list">
+            <Col :xl='12' :xs="24">
             <ListItemMeta>
                 <template slot="avatar">
                     <img :src="'https://images.weserv.nl/?url='+item.cover" class="list_img" @click="sendToparent(item.id)"/>
                 </template>
-                <template slot="title">
-                    <li style="font-size:0.3rem" class="book_title">{{item.name}}</li>
+                <template slot="title" >
+                    <li style="margin-top:40px">{{item.name}}</li>
                 </template>
                 <template slot="description">
-                    <li class="book_description">{{'书籍名称:'+item.name}}</li>
-                    <li class="book_description">{{"作者:"+item.author}}</li>
+                    <li>{{'书籍名称:'+item.name}}</li>
+                    <li>{{"作者:"+item.author}}</li>
                 </template>
-        </ListItemMeta>
+          </ListItemMeta>
+        </Col>
         </ListItem>
+        </Row>
     </List>
 </div>
 </template>
@@ -47,21 +51,15 @@ export default {
 </script>
 <style scoped>
 .list{
-    width: 7.2rem;
-    float: left;
     border: none;
     align-content: left;
+    padding: 0px;
+    margin-top: 20px; 
 }
 .list_img{
-    width:2.3rem;
-    height: 3rem;
-    margin-right:0.2rem
-}
-.book_title{
-  width: 4rem;
-}
-.book_description{
-  width: 8rem;
-  font-size: 0.25rem
+    width:132px;
+    height: 172px;
+    margin-right:0.2rem;
+    margin-bottom: 10px;
 }
 </style>

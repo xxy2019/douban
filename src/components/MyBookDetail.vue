@@ -2,12 +2,12 @@
     <Row>
       <Row>
         <Col :xl="16" :xs="24">
-          <Row class="enum_list">
+          <Row style="height:5rem">
             <h3 class="title">{{site.name}}</h3>
-            <Col :xl="5" :xs="5">
+            <Col :xl="5" :xs="10">
             <img :src="'https://images.weserv.nl/?url='+site.cover"  id="m_pic">
             </Col>
-            <Col :xl="{span:13,offset:6}" :xs="{span:16,offset:2}">
+            <Col :xl="{span:13,offset:6}" :xs="{span:13,offset:1}">
             <div class="detail">
               <p v-if='site.author'>
                 <span class="d_title">作者：</span>{{''+site.author}}</p>
@@ -64,9 +64,6 @@ export default {
 }
 </script>
 <style lang="css">
-.text{
-  margin-left: 0.2rem;
-}
 .title{
   font-size: 0.3rem;
 }
@@ -78,8 +75,9 @@ ul,li{
   list-style: none;
 }
 #m_pic{
-  width:2rem;
-  height:2.3rem;
+  width:132px;
+  height: 172px;
+  margin-right:0.2rem;
   float:left;
   margin-top:.225rem;
 }
@@ -88,8 +86,7 @@ ul,li{
   margin: .0325rem;
 }
 .p_right{
-  margin:.75rem 0 0.2rem;
-  border-left: .0125rem solid #aaa;
+  margin:1.5rem 0 0.5rem;
   padding-left:.625rem;
 }
 .b_introduction{
@@ -103,6 +100,7 @@ ul,li{
 .intro_content{
   font-size:.3rem;
   text-indent:.6rem;
-  line-height:.775rem;
+  line-height:24px;
+  margin-bottom: 20px;
 }
 </style>

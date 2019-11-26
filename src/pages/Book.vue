@@ -4,21 +4,23 @@
         <router-link :to="{path:'/'}"><Header></Header></router-link>
         <Layout>
             <Content class="content">
+              <Button size='small' type="text" class="book_button"  @click="OutputWomenLove">近30日最受女性欢迎的书籍</Button>
+              <Tag v-show="womenshow" color="success">{{this.womensort.sort}}</Tag>
                 <Row>
-                    <Col :xl="16" :xs="13">
+                   <Col :xl="16" :xs="24">
                         <Row>
-                            <Col :xl="{span:5,offset:0}" :xs="{span:11,offset:0}"><span>书籍热评榜</span></Col>
+                            <Col :xl="{span:5,offset:0}" :xs="{span:11,offset:0}"><span class="title">书籍热评榜</span></Col>
                             <Col :xl="{span:2,offset:17}" :xs="{span:3,offset:8}">
-                                <Button size='small' type="text" @click="OutputMore" v-show="show">更多</Button>
-                                <Button size='small' type="text" v-show="!show" @click="back">返回</Button>
+                                <Button size='large' type="text" @click="OutputMore" v-show="show">更多</Button>
+                                <Button size='large' type="text" v-show="!show" @click="back">返回</Button>
                             </Col>
                         </Row>
                         <hr/>
                         <MyBookList :content='books' :num='more' v-show='show' @acceptfromchild='showId'></MyBookList>
                         <MyBookDetail v-show='!show' :site='bookDetail' :star='bookDetail.grade/2'></MyBookDetail>
                     </Col>
-                    <Col :xl="{span:7,offset:1}" :xs="{span:10,offset:1}">
-                        <span class='title'>书籍排行榜</span>
+                    <Col :xl="{span:7,offset:1}" :xs="{span:24}" style="margin-top:.33rem">
+                        <span>书籍排行榜</span>
                         <hr/>
                         <MyBookCharts :content='books'></MyBookCharts>
                     </Col>
@@ -52,7 +54,11 @@ export default {
       show: true,
       bookDetail: [
 
-      ]
+      ],
+      womensort:[
+
+      ],
+      womenshow:false
     }
   },
   methods: {
@@ -66,9 +72,26 @@ export default {
         this.more = 0
       }, 3000)
     },
+    OutputWomenLove () {
+      const msg = this.$Message.loading({
+        content: 'Loading...',
+        duration: 0
+      })
+      this.getWomenLoveData();
+      setTimeout(msg, 3000)
+      setTimeout(() => {
+        this.womenshow=true;
+      }, 3000)
+    },
     getData () {
       Axios.get('api/book/topBook').then((book) => {
         this.books = book.data
+        console.log(book.data)
+      })
+    },
+    getWomenLoveData () {
+      Axios.get('api/book/get/femaleSort').then((book) => {
+        this.womensort=book.data;
         console.log(book.data)
       })
     },
@@ -86,21 +109,26 @@ export default {
     }
   },
   created () {
-    this.getData()
+    this.getData();
   }
 }
 </script>
 <style scoped>
+.book_button{
+  padding: 0;
+  color:#000;
+  margin-right: .5rem;
+}
 .content{
-    padding:1em 0.5rem 0 1rem;
+    padding:1rem 0.5rem 0 1rem;
     background-color: #fff;
 }
 .content hr{
     padding: 0;
-    margin-top:0.2rem;
+    color: #fff
 }
 .title{
-  font-size: .23rem;
-  line-height:.2rem
+    font-size: 16px;
+    line-height:38px;
 }
 </style>

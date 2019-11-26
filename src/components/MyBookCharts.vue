@@ -2,9 +2,9 @@
     <div>
         <List>
             <ListItem class='listitem' v-for="(item,index) in content" :key="item.index">
-                <Col :xs="24" :sm="12" :md="12" :lg="12" style="font-size:0.23rem">
+                <Col :xs="24" :xl="24">
                    <Icon type="ios-ribbon"  :class="JudgeClass[index]" v-if='index<3'/>
-<span v-if='index>2'>{{index+1+"、"}}</span>{{item.name+" by"+item.author}}
+                   <span v-if='index>2'>{{index+1+"、"}}</span>{{item.name+" by"+item.author}}
                 </Col>
             </ListItem>
         </List>

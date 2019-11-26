@@ -11,15 +11,15 @@
     </div>
 </template>
 <script>
-    export default {
-        name:'MyMovieCharts',
-        props:['content'],
-        data () {
+export default {
+  name: 'MyMovieCharts',
+  props: ['content'],
+  data () {
     return {
       JudgeClass: ['gold', 'silver', 'copper']
     }
   }
-    }
+}
 </script>
 <style scoped>
 .listitem{

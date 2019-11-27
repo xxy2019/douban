@@ -92,7 +92,7 @@ export default {
 </script>
 <style scoped>
 .content{
-    padding:1rem 0.5rem 0 1rem;
+    padding:.25rem 0.5rem 0 1rem;
     background-color: #fff;
 }
 .content hr{

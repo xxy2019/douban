@@ -4,8 +4,8 @@
         <router-link :to="{path:'/'}"><Header></Header></router-link>
         <Layout>
             <Content class="content">
-              <Button size='small' type="text" class="book_button"  @click="OutputWomenLove">近30日最受女性欢迎的书籍</Button>
-              <Tag v-show="womenshow" color="success">{{this.womensort.sort}}</Tag>
+              <span class="book_button"  >近30日最受女性欢迎的书籍</span>
+              <Button size="small" type="success" @click="OutputWomenLove">{{this.womensort.sort}}</Button>
                 <Row>
                    <Col :xl="16" :xs="24">
                         <Row>
@@ -16,7 +16,8 @@
                             </Col>
                         </Row>
                         <hr/>
-                        <MyBookList :content='books' :num='more' v-show='show' @acceptfromchild='showId'></MyBookList>
+                        <MyBookList :content='books' :num='more' v-show='show' v-if='Loveshow' @acceptfromchild='showId'></MyBookList>
+                        <MyBookList :content='bookLove' :num='more'  v-if='!Loveshow' @acceptfromchild='showId'></MyBookList>
                         <MyBookDetail v-show='!show' :site='bookDetail' :star='bookDetail.grade/2'></MyBookDetail>
                     </Col>
                     <Col :xl="{span:7,offset:1}" :xs="{span:24}" style="margin-top:.33rem">
@@ -49,16 +50,19 @@ export default {
       books: [
 
       ],
+      bookLove: [
+
+      ],
       more: 4,
       moreback: '更多',
       show: true,
+      Loveshow: true,
       bookDetail: [
 
       ],
       womensort:[
 
-      ],
-      womenshow:false
+      ]
     }
   },
   methods: {
@@ -80,7 +84,7 @@ export default {
       this.getWomenLoveData();
       setTimeout(msg, 3000)
       setTimeout(() => {
-        this.womenshow=true;
+        this.Loveshow = false
       }, 3000)
     },
     getData () {
@@ -89,10 +93,16 @@ export default {
         console.log(book.data)
       })
     },
-    getWomenLoveData () {
+    getWomenLoveSort () {
       Axios.get('api/book/get/femaleSort').then((book) => {
         this.womensort=book.data;
         console.log(book.data)
+      })
+    },
+     getWomenLoveData () {
+      Axios.get('api/book/getBySortNum/'+this.womensort.sort+'/10').then((book) => {
+        this.bookLove=book.data;
+        console.log(this.bookLove)
       })
     },
     showId (value) {
@@ -110,6 +120,8 @@ export default {
   },
   created () {
     this.getData();
+    this.getWomenLoveSort();
+    
   }
 }
 </script>
@@ -120,7 +132,7 @@ export default {
   margin-right: .5rem;
 }
 .content{
-    padding:1rem 0.5rem 0 1rem;
+    padding:.23rem 0.5rem 0 1rem;
     background-color: #fff;
 }
 .content hr{

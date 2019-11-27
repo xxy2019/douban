@@ -17,7 +17,7 @@
                         </Row>
                         <hr/>
                         <MyBookList :content='books' :num='more' v-show='show' v-if='Loveshow' @acceptfromchild='showId'></MyBookList>
-                        <MyBookList :content='bookLove' :num='more'  v-if='!Loveshow' @acceptfromchild='showId'></MyBookList>
+                        <MyBookList :content='bookLove' :num='0' v-show='show'  v-if='!Loveshow' @acceptfromchild='showId'></MyBookList>
                         <MyBookDetail v-show='!show' :site='bookDetail' :star='bookDetail.grade/2'></MyBookDetail>
                     </Col>
                     <Col :xl="{span:7,offset:1}" :xs="{span:24}" style="margin-top:.33rem">

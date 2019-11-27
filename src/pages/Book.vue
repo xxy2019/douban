@@ -11,7 +11,7 @@
                         <Row>
                             <Col :xl="{span:5,offset:0}" :xs="{span:11,offset:0}"><span class="title">书籍热评榜</span></Col>
                             <Col :xl="{span:2,offset:17}" :xs="{span:3,offset:8}">
-                                <Button size='large' type="text" @click="OutputMore" v-show="show">更多</Button>
+                                <Button size='large' type="text" @click="OutputMore" v-show="show" v-if='Loveshow'>更多</Button>
                                 <Button size='large' type="text" v-show="!show" @click="back">返回</Button>
                             </Col>
                         </Row>
@@ -84,7 +84,7 @@ export default {
       this.getWomenLoveData();
       setTimeout(msg, 3000)
       setTimeout(() => {
-        this.Loveshow = false
+        this.Loveshow = !this.Loveshow
       }, 3000)
     },
     getData () {

@@ -2,7 +2,7 @@
 <div class="mylist">
     <List item-layout="vertical">
       <Row>
-        <ListItem v-for="(item,index) in content.slice(num,10)" :key="index" class="list">
+        <ListItem v-for="(item,index) in content.slice(num,10)" :key="index" class="listitem">
             <Col :xl='12' :xs="24">
             <ListItemMeta>
                 <template slot="avatar">
@@ -50,7 +50,7 @@ export default {
 }
 </script>
 <style scoped>
-.list{
+.listitem{
     border: none;
     align-content: left;
     padding: 0px;
